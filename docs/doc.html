@@ -1,0 +1,597 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:12.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{color:#0563C1;
+	text-decoration:underline;}
+.MsoChpDefault
+	{font-size:12.0pt;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:115%;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link="#0563C1" vlink="#954F72" style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:22.0pt;line-height:115%'>Multi-Modal Next.js Chat App with
+Vercel AI SDK &amp; LangGraph.js</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Video Link: <a
+href="https://youtu.be/6ZWi-TQI-l8" target="_blank">https://youtu.be/6ZWi-TQI-l8</a></span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>GitHub
+Repository: <a href="https://github.com/Ashot72/Multi-Modal-Chat"
+target="_blank">https://github.com/Ashot72/Multi-Modal-Chat</a></span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'><a
+href="https://langchain-ai.github.io/langgraphjs/" target="_blank">LangGraph.js</a>
+is a library for building stateful, multi-actor applications with LLMs, used to
+create agent and multi-agent workflows. Compared to other</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>LLM
+frameworks, it offers these core benefits; cycles, controllability, and
+persistence.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'><a
+href="https://sdk.vercel.ai/" target="_blank">Vercel AI SDK</a> is a set of
+tools that enables developers to easily integrate AI capabilities, like natural
+language processing and machine learning, into their applications hosted</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>on the
+Vercel platform.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>In this
+application, we created a multi-modal chat platform. A user can ask a question,
+upload an image and inquire about it, convert content into an audio file and
+download it, </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>request
+information, plot a chart based on the results, and download it. The app can
+also load videos, display documentation, and provide links pointing to
+websites. </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Additionally,
+it can generate images based on prompts. In general, you can extend it and do
+more using various tools.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1344 height=501 id="Picture 39"
+src="doc_files/image001.png"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>In the
+diagram, a user asks a question. If the question does not require tooling, such
+as the prompt 'Hi, how are you?', then a plain text response is used. However,
+if the prompt </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>is 'Generate
+a video of Mount Ararat,' then the image tool is called.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>The
+interesting thing about the app is that we dispatch custom <a
+href="https://js.langchain.com/docs/how_to/callbacks_custom_events/"
+target="_blank">Langchain.js</a> callback events and stream React components
+form the server to the client with Vercel AI SDK.!</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>In the
+video, you can see that in many cases, before getting the results from the
+server, we stream a React skeleton/loader component from the server to the
+client. Once the </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>result is
+received, we replace the skeleton/loader component with the final React
+component, such as a chart or audio, streamed from the server to the client.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1149 height=834 id="Picture 1"
+src="doc_files/image002.png"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 1</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>We created a
+graph that uses different tools.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1161 height=829 id="Picture 2"
+src="doc_files/image003.png"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 2</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Let's
+investigate the tools. If you look inside the tools, you will see that they are
+mostly composed of three parts. In the first part, we stream a skeleton/loader
+React component from the </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>server to
+the client. You will also see that we dispatch the <i>AudioLoading</i> React
+component.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=976 height=835 id="Picture 3"
+src="doc_files/image004.png"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 3</span></p>
+
+<p class=MsoNormal><i><span style='font-size:14.0pt;line-height:115%'>AudioLoading</span></i><span
+style='font-size:14.0pt;line-height:115%'> component is a React placeholder
+component.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1144 height=598 id="Picture 4"
+src="doc_files/image005.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 4</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>This is the
+blinking skeleton AudioLoading component rendered on the page.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1158 height=768 id="Picture 5"
+src="doc_files/image006.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 5</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>After
+streaming the AudioLoading component, we generate the actual MP3 audio file in
+the public folder based on the prompt, which in our case is a poem.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1173 height=831 id="Picture 6"
+src="doc_files/image007.png"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 6</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Once the
+audio file is generated, we stream the Audio React component. Note, that we
+also change the <i>type</i> from <i>append</i> to <i>update</i>, which we will
+discuss later.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1115 height=694 id="Picture 7"
+src="doc_files/image008.png"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 7</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>The Audio
+control in this case is a built-in HTML Audio control that we display on the
+page.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1119 height=647 id="Picture 8"
+src="doc_files/image009.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 8</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>This is the
+HTML <i>Audio</i> control that replaced the <i>AudioLoading</i> component.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1234 height=751 id="Picture 9"
+src="doc_files/image010.png"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 9</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>For the
+Chart control, we do not have a loading control or any code that retrieves
+chart data. The reason is that the data comes from memory. First, you ask about
+</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Lightning
+Tools' popular products, and then, after that, when you ask to plot a chart,
+the formatted data matching the Zod schema is passed to Chart.js to stream the
+control.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1279 height=686 id="Picture 10"
+src="doc_files/image011.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 10</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>You can see
+that the schema defines the chart type, title, and a data array containing
+labels and values.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1306 height=842 id="Picture 11"
+src="doc_files/image012.png"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 11</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>To plot a
+chart, we use the Chart.js library. The interface matches the Zod schema that
+we pass to the component to render the chart.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1206 height=813 id="Picture 12"
+src="doc_files/image013.png"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 12</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>For the
+Document tool, we use a similar approach, but the actual data comes from the <i>Langchain</i>
+<i>TaviaSearchAPIRetriever</i> based on the prompt. It returns three results.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1233 height=671 id="Picture 13"
+src="doc_files/image014.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 13</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>In the <i>DocumentLoading</i>
+component, we define a skeleton card control.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1233 height=679 id="Picture 14"
+src="doc_files/image015.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 14</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>After the
+data is retrieved, we render three card components with links, as we return
+three results.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1345 height=732 id="Picture 15"
+src="doc_files/image016.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 15</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Image
+rendering uses the same approach. We use <i>DalleAPIWrapper</i> to generate the
+image and pass the URL to the <i>img</i> tag.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1162 height=719 id="Picture 16"
+src="doc_files/image017.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 16</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>We display
+an image placeholder before generating the image.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1027 height=805 id="Picture 17"
+src="doc_files/image018.png"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 17</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>This is the
+image after generation.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1292 height=628 id="Picture 18"
+src="doc_files/image019.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 18</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>For the
+video, we use a similar approach. We find a YouTube video based on the prompt
+and render it on the page.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1316 height=748 id="Picture 19"
+src="doc_files/image020.png"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 19</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>To search
+for a YouTube video, we use the <a
+href="https://developers.google.com/youtube/v3/getting-started" target="_blank">YouTube
+Data API</a>, which is free, but you need to register to get the key, which
+goes into the <i>.env</i> file.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1337 height=385 id="Picture 20"
+src="doc_files/image021.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 20</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Here, <i>I
+search for I would like to watch a video on Trump's tariffs on Mexico and
+Canada,</i> specifying the maximum result as one. We render the video on the
+page </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>by passing
+the <i>videoId</i> to https://www.youtube.com/embed/</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1349 height=640 id="Picture 21"
+src="doc_files/image022.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 21</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>To render
+the Weather control, we first obtain the data from the fake weather API and
+then render the control.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=927 height=822 id="Picture 22"
+src="doc_files/image023.png"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 22</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>This is the
+fake weather API for some cities. You can use a real one in your app.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1296 height=817 id="Picture 23"
+src="doc_files/image024.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 23</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>You can
+upload a picture and ask about it, but the picture must be in base64 format so
+the AI can process it. It will not work if it's an image URL. No tooling is
+called in this case. </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>In your
+application, you can add various tools that perform different tasks, making
+your chat even more multi-modal.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1413 height=711 id="Picture 25"
+src="doc_files/image025.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 24</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>In the <i>actions</i>
+file, we specify <i>createAI</i>, which creates a client-server context
+provider that can be used to wrap parts of our application tree to easily
+manage both the UI and AI states of our application.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1207 height=759 id="Picture 26"
+src="doc_files/image026.png"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 25</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>In our
+application, we print the state to the console.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1243 height=539 id="Picture 27"
+src="doc_files/image027.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 26</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>When we
+write a prompt and may also upload a picture, we call sendMessage on the
+server, passing the prompt and the file in base64 format.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>We define <i>getMutableAIState</i>,
+which gets a mutable copy of the AI state that we can use to update the state
+on the server.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=755 height=860 id="Picture 28"
+src="doc_files/image028.png"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 27</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>We call the <i>processFile</i>
+function, where we convert the state to a <i>Langchain</i> AI state, and where <i>HumanMessage</i>
+and <i>AIMessage</i> are types of message objects </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>used to
+represent communication between a human and the AI model.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1196 height=557 id="Picture 29"
+src="doc_files/image029.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 28</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Next, we
+call <i>streamRunnableUI</i>, which takes <i>agentExecutor()</i> and <i>processInputs</i>
+as arguments. <i>ProcessInputs</i> refers to the messages/history in <i>Langchain</i>
+format that </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>we already
+know. <i>agentExecutor()</i> returns the compiled graph model, where we define
+nodes and edges.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1254 height=511 id="Picture 30"
+src="doc_files/image030.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 29</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>When calling
+<i>streamRunnableUI</i>, we first define <i>createStreamableUI</i>. <i>createStreamableUI</i>
+creates a stream that sends the UI from the server to the client. On the client
+side, </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>it can be
+rendered as a normal React node.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=731 height=822 id="Picture 31"
+src="doc_files/image031.png"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 30</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>We define
+callbacks, which are of the type <i>createStreamableUI</i> or <i>createStreamableValue</i>.
+While <i>createStreamableUI</i> creates a streamable React component, </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>as we
+discussed, <i>createStreamableValue</i> streams serializable JavaScript values
+from the server to the client, such as strings, numbers, objects, and arrays.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1256 height=828 id="Picture 32"
+src="doc_files/image032.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 31</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>In <i>Langchain</i>,
+we can <a href="https://js.langchain.com/docs/how_to/callbacks_custom_events/"
+target="_blank">dispatch custom callback events</a> and consume them via <i>StreamEvents</i>.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1180 height=748 id="Picture 33"
+src="doc_files/image033.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 32</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Here is a
+sample code.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1434 height=706 id="Picture 35"
+src="doc_files/image034.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 33</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Let's
+consider the case where the prompt is 'Convert the content to audio so I can
+listen.' In this case, LangGraph calls the Audio tooling, and first, we
+dispatch the <i>AudioLoading</i> </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>React
+component with the type 'append.' With <i>StreamEvents</i>, we handle it, and
+as the type is 'append,' we add it to the <i>StreamableUI</i> so the client can
+see the Audio React </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>skeleton
+component rendered on the page. Then, we generate the audio file, and once the
+file is generated, we dispatch another React component, which is Audio, with
+the </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>type
+'update.' We handle it, and as it has the type 'update,' we replace the
+existing skeleton control with the actual Audio control, which is a built-in
+HTML audio control.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1313 height=706 id="Picture 36"
+src="doc_files/image035.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 34</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>In the case
+of the prompt 'Hi, how are you?', no tooling is called, and we do not dispatch
+a React component. In the code, we check if it is not a valid React element,
+and we know </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>that it
+doesn't require any React component dispatching. In this case, we know that
+with <i>on_chat_model_stream</i>, we can get a chunk, and we create a
+streamable value, </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>always
+appending it to the <i>AIMessage</i>. We always append it because, if it's
+writing a poem, we need to append each incoming chunk instead of replacing the
+previous one, as we </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>did when
+dispatching. On the client side, we use the <i>createStreamableValue</i> hook,
+which can return the current value, error, and pending state.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1410 height=707 id="Picture 37"
+src="doc_files/image036.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 35</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>From the <i>createStreamableUI</i>
+function, we return the UI and the last event. We add the last event to the
+history via <i>getMutableAIState</i>.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+<p class=MsoNormal><img border=0 width=1419 height=720 id="Picture 38"
+src="doc_files/image037.jpg"></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>Figure 36</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>From the <i>sendMessage</i>
+function, we return the streamed UI and the uploaded file (if any), then create
+a React element and append it to the state using the <i>useState</i> hook.</span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>
