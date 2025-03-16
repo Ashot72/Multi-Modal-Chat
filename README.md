@@ -9,7 +9,7 @@ This multi-modal chat platform, built with LangGraph.js, leverages the Vercel AI
 
 ![graph image](https://github.com/Ashot72/Multi-Modal-Chat/blob/main/multimodal.png)
 
-In the diagram, when a user asks a question, the response method depends on the prompt. Simple queries like 'Hi, how are you?' receive a plain text response. However, if the prompt requires tooling—such as 'Generate a video of Mount Ararat'—the appropriate tool, like the image generator, is invoked.
+In the diagram, when a user asks a question, the response method depends on the prompt. Simple queries like 'Hi, how are you?' receive a plain text response. However, if the prompt requires tooling—such as 'Generate an image of Mount Ararat'—the appropriate tool, like the image generator, is invoked.
 
 To get started.
 ```
